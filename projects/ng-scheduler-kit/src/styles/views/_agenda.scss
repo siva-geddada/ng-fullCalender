@@ -1,0 +1,130 @@
+.sch-agenda {
+  display: block;
+  border-top: 1px solid var(--sch-border);
+  overflow-y: auto;
+  padding: 0.5rem 0;
+}
+
+.sch-agenda__day {
+  display: grid;
+  grid-template-columns: 10rem minmax(0, 1fr);
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--sch-border);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.sch-agenda__date {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+}
+
+.sch-agenda__daynum {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  font-size: 1.25rem;
+  font-weight: 600;
+
+  .sch-is-today & {
+    background: var(--sch-today);
+    color: var(--sch-accent-text);
+  }
+}
+
+.sch-agenda__daymeta {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0.125rem;
+}
+
+.sch-agenda__weekday {
+  font-weight: 600;
+}
+
+.sch-agenda__month {
+  font-size: 0.75rem;
+  color: var(--sch-text-muted);
+}
+
+.sch-agenda__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sch-agenda__item {
+  --_c: var(--sch-event-color, var(--sch-accent));
+  display: grid;
+  grid-template-columns: 0.625rem 9rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.5rem 0.625rem;
+  border: 0;
+  border-radius: var(--sch-radius-sm);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--sch-surface-hover);
+  }
+}
+
+.sch-agenda__dot {
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 50%;
+  background: var(--_c);
+}
+
+.sch-agenda__when {
+  color: var(--sch-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.sch-agenda__what {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sch-agenda__empty {
+  margin: 3rem auto;
+  color: var(--sch-text-muted);
+  text-align: center;
+}
+
+@container (max-width: 36rem) {
+  .sch-agenda__day {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+  }
+
+  .sch-agenda__item {
+    grid-template-columns: 0.625rem 6.5rem minmax(0, 1fr);
+  }
+}
+
+.sch-agenda__none {
+  margin: 0;
+  padding: 0.5rem 0.625rem;
+  color: var(--sch-text-muted);
+  font-size: 0.8125rem;
+}
+
+.sch-agenda__day.sch-is-empty .sch-agenda__daynum {
+  color: var(--sch-text-muted);
+}

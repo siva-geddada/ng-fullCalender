@@ -1,0 +1,217 @@
+// Timeline: fixed-width slots (--sch-tl-slot) scroll horizontally; the resource column
+// (--sch-tl-resource) and the header tiers stay sticky.
+.sch-tl {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-top: 1px solid var(--sch-border);
+}
+
+.sch-tl__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.sch-tl__inner {
+  min-width: 100%;
+}
+
+.sch-tl__head,
+.sch-tl__row {
+  display: flex;
+}
+
+.sch-tl__head {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: var(--sch-header-bg);
+  border-bottom: 1px solid var(--sch-border);
+}
+
+.sch-tl__corner,
+.sch-tl__resource {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  flex: none;
+  width: var(--sch-tl-resource);
+  border-right: 1px solid var(--sch-border);
+}
+
+.sch-tl__corner {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0.75rem 0.5rem;
+  background: var(--sch-header-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--sch-text-muted);
+}
+
+.sch-tl--no-resources {
+  .sch-tl__corner,
+  .sch-tl__resource {
+    width: 0;
+    padding: 0;
+    border: 0;
+  }
+}
+
+.sch-tl__tiers {
+  flex: none;
+}
+
+.sch-tl__tier {
+  display: grid;
+
+  & + & {
+    border-top: 1px solid var(--sch-border);
+  }
+}
+
+.sch-tl__hcell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.4375rem 0.5rem;
+  border-left: 1px solid var(--sch-border);
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:first-child {
+    border-left: 0;
+  }
+
+  &.sch-is-today .sch-tl__hlabel {
+    color: var(--sch-accent-text);
+  }
+}
+
+.sch-tl__tier:not(.sch-tl__tier--leaf) .sch-tl__hcell {
+  // Allow the sticky group label below to stay visible while scrolling.
+  overflow: visible;
+}
+
+.sch-tl__tier:not(.sch-tl__tier--leaf) .sch-tl__hlabel {
+  // Keep group labels readable while scrolling horizontally.
+  position: sticky;
+  left: calc(var(--sch-tl-resource) + 0.5rem);
+  align-self: flex-start;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--sch-text-strong);
+}
+
+.sch-tl__tier--leaf .sch-tl__hlabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--sch-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.sch-tl__hsub {
+  font-size: 0.6875rem;
+  color: var(--sch-text-muted);
+}
+
+.sch-tl__row {
+  border-bottom: 1px solid var(--sch-border);
+}
+
+.sch-tl__resource {
+  --_c: var(--sch-event-color, var(--sch-text-muted));
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  background: var(--sch-surface);
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.sch-tl__rname {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sch-tl__swatch {
+  flex: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 3px;
+  background: var(--_c);
+}
+
+.sch-tl__track {
+  position: relative;
+  flex: none;
+  background-image: linear-gradient(to right, var(--sch-border) 1px, transparent 1px);
+  background-size: var(--sch-tl-slot) 100%;
+  touch-action: none;
+}
+
+.sch-tl__muted {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: color-mix(in srgb, var(--sch-text-muted) 7%, transparent);
+  pointer-events: none;
+}
+
+.sch-event--tl {
+  position: absolute;
+  height: calc(34px - 6px);
+  align-items: center;
+  padding: 0 0.625rem 0 0.5rem;
+  border: 1px solid var(--sch-event-border, color-mix(in srgb, var(--_c) var(--sch-event-border-mix), transparent));
+  border-left: 3px solid var(--_c);
+
+  &.sch-event--cont-before {
+    border-left-width: 1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.sch-event--cont-after {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .sch-event-content {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.375rem;
+  }
+}
+
+.sch-tl__selection {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  z-index: 1;
+  border-radius: var(--sch-radius-sm);
+  background: var(--sch-selection);
+  border: 1px solid var(--sch-accent);
+  pointer-events: none;
+
+  &.sch-is-invalid {
+    border-color: var(--sch-now);
+    background: color-mix(in srgb, var(--sch-now) 10%, transparent);
+  }
+}
+
+.sch-tl__now {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 2px solid var(--sch-now);
+  z-index: 4;
+  pointer-events: none;
+}

@@ -1,0 +1,6 @@
+# GitBook Git Sync: read the documentation from docs/ (not the whole Angular workspace).
+root: ./docs/
+
+structure:
+  readme: README.md
+  summary: SUMMARY.md

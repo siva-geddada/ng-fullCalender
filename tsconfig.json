@@ -7,6 +7,10 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "ng-scheduler-kit": ["./dist/ng-scheduler-kit"],
+      "ng-scheduler-kit/*": ["./dist/ng-scheduler-kit/*"]
+    },
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,
@@ -26,6 +30,12 @@
     },
     {
       "path": "./tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/ng-scheduler-kit/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/ng-scheduler-kit/tsconfig.spec.json"
     }
   ]
 }

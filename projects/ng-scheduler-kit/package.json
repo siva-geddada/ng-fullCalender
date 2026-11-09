@@ -1,0 +1,32 @@
+{
+  "name": "ng-scheduler-kit",
+  "version": "0.1.0",
+  "description": "Composable, signal-based event scheduler for Angular: day, week, month, agenda and timeline views with drag & drop, recurrence and SCSS theming.",
+  "keywords": [
+    "angular",
+    "scheduler",
+    "calendar",
+    "events",
+    "timeline",
+    "agenda",
+    "drag-and-drop",
+    "signals"
+  ],
+  "license": "SEE LICENSE IN LICENSE",
+  "peerDependencies": {
+    "@angular/common": ">=22.0.0",
+    "@angular/core": ">=22.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "exports": {
+    "./styles": {
+      "sass": "./styles/_index.scss"
+    },
+    "./styles/*": {
+      "sass": "./styles/*"
+    }
+  },
+  "sideEffects": false
+}
