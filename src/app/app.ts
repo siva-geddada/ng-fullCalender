@@ -9,7 +9,7 @@ import {
   SchedulerTheme,
   SchedulerViewType,
   provideSchedulerViews,
-} from 'ng-scheduler-kit';
+} from 'ng-fullcalender';
 
 const today = new Date();
 const at = (dayOffset: number, h: number, m = 0) =>

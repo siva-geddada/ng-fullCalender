@@ -8,8 +8,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "ng-scheduler-kit": ["./dist/ng-scheduler-kit"],
-      "ng-scheduler-kit/*": ["./dist/ng-scheduler-kit/*"]
+      "ng-fullcalender": ["./dist/ng-fullcalender"],
+      "ng-fullcalender/*": ["./dist/ng-fullcalender/*"]
     },
     "skipLibCheck": true,
     "isolatedModules": true,
@@ -32,10 +32,10 @@
       "path": "./tsconfig.spec.json"
     },
     {
-      "path": "./projects/ng-scheduler-kit/tsconfig.lib.json"
+      "path": "./projects/ng-fullcalender/tsconfig.lib.json"
     },
     {
-      "path": "./projects/ng-scheduler-kit/tsconfig.spec.json"
+      "path": "./projects/ng-fullcalender/tsconfig.spec.json"
     }
   ]
 }

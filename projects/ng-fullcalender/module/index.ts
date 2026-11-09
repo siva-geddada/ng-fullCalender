@@ -7,7 +7,7 @@ import {
   SchSchedulerBody,
   SchSchedulerToolbar,
   provideSchedulerViews,
-} from 'ng-scheduler-kit';
+} from 'ng-fullcalender';
 
 const PARTS = [SchScheduler, SchSchedulerToolbar, SchSchedulerBody, SchEventTemplate, SchDayHeaderTemplate, SchAgendaDateHeaderTemplate];
 

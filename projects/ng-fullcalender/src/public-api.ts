@@ -1,5 +1,5 @@
 /*
- * Public API Surface of ng-scheduler-kit
+ * Public API Surface of ng-fullcalender
  */
 
 // Models, payloads & helpers

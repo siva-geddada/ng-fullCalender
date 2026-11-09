@@ -1,14 +1,14 @@
 # License
 
-ng-scheduler-kit uses the **MIT License with an attribution requirement** (full text below). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
+ng-fullcalender uses the **MIT License with an attribution requirement** (full text below). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
 
-> Any application, website or other product that uses ng-scheduler-kit must display the text **"Powered by ng-scheduler-kit"** with a working link to **[PROJECT URL]** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
+> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **[PROJECT URL]** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
 
 For example:
 
 ```html
 <footer>
-  Powered by <a href="[PROJECT URL]" target="_blank" rel="noopener">ng-scheduler-kit</a>
+  Powered by <a href="[PROJECT URL]" target="_blank" rel="noopener">ng-fullcalender</a>
 </footer>
 ```
 
@@ -35,7 +35,7 @@ furnished to do so, subject to the following conditions:
 
 2. Attribution. Any application, website or other product that uses the
    Software, in whole or in part, in original or modified form, must display
-   the text "Powered by ng-scheduler-kit" together with a working hyperlink to
+   the text "Powered by ng-fullcalender" together with a working hyperlink to
    [PROJECT URL] in a location that is reasonably visible to its end users,
    such as an "About" page, a credits or acknowledgements screen, a help page,
    or the application footer. The attribution must not be hidden, obscured or

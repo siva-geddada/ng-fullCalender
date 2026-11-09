@@ -8,4 +8,4 @@ export {
   RESOURCE_TIMELINE_DAY_VIEW,
   RESOURCE_TIMELINE_WEEK_VIEW,
   RESOURCE_TIMELINE_MONTH_VIEW,
-} from 'ng-scheduler-kit';
+} from 'ng-fullcalender';

@@ -2,7 +2,7 @@
 
 | `view` | Shows | Provider (import path) |
 | --- | --- | --- |
-| `month` | 6-week grid | `provideSchedulerMonthView()` (`ng-scheduler-kit/views/month`) |
+| `month` | 6-week grid | `provideSchedulerMonthView()` (`ng-fullcalender/views/month`) |
 | `week` | Time grid, aligned week or `numberOfDays` | `provideSchedulerWeekView()` (`…/views/week`) |
 | `day` | Time grid for one day | `provideSchedulerDayView()` (`…/views/day`) |
 | `year` | Twelve mini-months | `provideSchedulerYearView()` (`…/views/year`) |

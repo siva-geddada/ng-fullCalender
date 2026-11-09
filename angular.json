@@ -66,7 +66,7 @@
           "options": {
             "prebundle": {
               "exclude": [
-                "ng-scheduler-kit"
+                "ng-fullcalender"
               ]
             }
           }
@@ -76,20 +76,20 @@
         }
       }
     },
-    "ng-scheduler-kit": {
+    "ng-fullcalender": {
       "projectType": "library",
-      "root": "projects/ng-scheduler-kit",
-      "sourceRoot": "projects/ng-scheduler-kit/src",
+      "root": "projects/ng-fullcalender",
+      "sourceRoot": "projects/ng-fullcalender/src",
       "prefix": "sch",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-scheduler-kit/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ng-fullcalender/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ng-scheduler-kit/tsconfig.lib.json"
+              "tsConfig": "projects/ng-fullcalender/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -97,7 +97,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/ng-scheduler-kit/tsconfig.spec.json"
+            "tsConfig": "projects/ng-fullcalender/tsconfig.spec.json"
           }
         }
       }

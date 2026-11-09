@@ -3,7 +3,7 @@
 ```ts
 // app.config.ts
 import { ApplicationConfig } from '@angular/core';
-import { provideSchedulerViews } from 'ng-scheduler-kit/views/all';
+import { provideSchedulerViews } from 'ng-fullcalender/views/all';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideSchedulerViews()], // month, week, day, year, agenda, timeline*
@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
 ```ts
 // calendar.component.ts
 import { Component, signal } from '@angular/core';
-import { SCHEDULER_IMPORTS, SchedulerEvent } from 'ng-scheduler-kit';
+import { SCHEDULER_IMPORTS, SchedulerEvent } from 'ng-fullcalender';
 
 @Component({
   selector: 'app-calendar',

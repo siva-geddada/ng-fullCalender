@@ -12,7 +12,7 @@ sch-scheduler {
 ```
 
 ```scss
-@use 'ng-scheduler-kit/styles' as sch;
+@use 'ng-fullcalender/styles' as sch;
 
 .my-calendar {
   @include sch.theme(('accent': #2563eb, 'weekend': #fafafa));

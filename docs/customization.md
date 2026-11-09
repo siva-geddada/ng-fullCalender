@@ -17,4 +17,4 @@
 </sch-scheduler>
 ```
 
-**Your own toolbar or view:** place any component inside `<sch-scheduler>` and call `injectSchedulerContext()` from `ng-scheduler-kit/context`. It exposes `view()`, `date()`, `range()`, `title()`, `occurrences()`, `selection()`, `next()`, `prev()`, `today()` and `setView()`. A custom view is a `SchedulerViewDefinition` (`type`, `labelKey`, `component`, `range`, `step`, `title`, plus optional `period` and `data`) registered with `provideSchedulerView()`.
+**Your own toolbar or view:** place any component inside `<sch-scheduler>` and call `injectSchedulerContext()` from `ng-fullcalender/context`. It exposes `view()`, `date()`, `range()`, `title()`, `occurrences()`, `selection()`, `next()`, `prev()`, `today()` and `setView()`. A custom view is a `SchedulerViewDefinition` (`type`, `labelKey`, `component`, `range`, `step`, `title`, plus optional `period` and `data`) registered with `provideSchedulerView()`.

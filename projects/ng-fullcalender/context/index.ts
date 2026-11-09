@@ -10,4 +10,4 @@ export {
   type SchedulerViewDefinition,
   SchEventContent,
   SchEventPopoverTrigger,
-} from 'ng-scheduler-kit';
+} from 'ng-fullcalender';

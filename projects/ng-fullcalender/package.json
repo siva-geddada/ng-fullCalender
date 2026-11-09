@@ -1,5 +1,5 @@
 {
-  "name": "ng-scheduler-kit",
+  "name": "ng-fullcalender",
   "version": "0.1.0",
   "description": "Composable, signal-based event scheduler for Angular: day, week, month, agenda and timeline views with drag & drop, recurrence and SCSS theming.",
   "keywords": [

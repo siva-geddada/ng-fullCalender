@@ -1,4 +1,4 @@
-# ng-scheduler-kit
+# ng-fullCalender
 
 An event scheduler (calendar) for **Angular 22+**, built with signals and styled with SCSS. It has month, week, day, year and agenda views, plus timelines at day, week, month and year scale. Every view shares the same event model, popovers, selection, and drag & resize behavior.
 

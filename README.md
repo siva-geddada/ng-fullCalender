@@ -1,4 +1,4 @@
-# ng-scheduler-kit
+# ng-fullCalender
 
 An event scheduler (calendar) for **Angular 22+**, built with signals and styled with SCSS. It has month, week, day, year and agenda views, plus timelines at day, week, month and year scale. Every view shares the same event model, popovers, selection, and drag & resize behavior.
 
@@ -68,7 +68,7 @@ An event scheduler (calendar) for **Angular 22+**, built with signals and styled
 ### From npm (after the package is published)
 
 ```bash
-npm install ng-scheduler-kit
+npm install ng-fullcalender
 ```
 
 ### From this Git repository
@@ -76,14 +76,14 @@ npm install ng-scheduler-kit
 The library lives inside this Angular workspace, so build it first, then install the built package into your app:
 
 ```bash
-git clone https://github.com/<your-user>/ng-scheduler-kit.git
-cd ng-scheduler-kit
+git clone https://github.com/<your-user>/ng-fullcalender.git
+cd ng-fullcalender
 npm ci
-npx ng build ng-scheduler-kit                 # → dist/ng-scheduler-kit
+npx ng build ng-fullcalender                 # → dist/ng-fullcalender
 
 cd /path/to/your-angular-app
-npm install /path/to/ng-scheduler-kit/dist/ng-scheduler-kit
-# or: cd dist/ng-scheduler-kit && npm pack, then npm install the generated .tgz
+npm install /path/to/ng-fullcalender/dist/ng-fullcalender
+# or: cd dist/ng-fullcalender && npm pack, then npm install the generated .tgz
 ```
 
 ## Quick start
@@ -91,7 +91,7 @@ npm install /path/to/ng-scheduler-kit/dist/ng-scheduler-kit
 ```ts
 // app.config.ts
 import { ApplicationConfig } from '@angular/core';
-import { provideSchedulerViews } from 'ng-scheduler-kit/views/all';
+import { provideSchedulerViews } from 'ng-fullcalender/views/all';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideSchedulerViews()], // month, week, day, year, agenda, timeline*
@@ -101,7 +101,7 @@ export const appConfig: ApplicationConfig = {
 ```ts
 // calendar.component.ts
 import { Component, signal } from '@angular/core';
-import { SCHEDULER_IMPORTS, SchedulerEvent } from 'ng-scheduler-kit';
+import { SCHEDULER_IMPORTS, SchedulerEvent } from 'ng-fullcalender';
 
 @Component({
   selector: 'app-calendar',
@@ -209,7 +209,7 @@ Payloads describe an occurrence of a series as an `ExpandedEvent` (`id`, `origin
 
 | `view` | Shows | Provider (import path) |
 | --- | --- | --- |
-| `month` | 6-week grid | `provideSchedulerMonthView()` (`ng-scheduler-kit/views/month`) |
+| `month` | 6-week grid | `provideSchedulerMonthView()` (`ng-fullcalender/views/month`) |
 | `week` | Time grid, aligned week or `numberOfDays` | `provideSchedulerWeekView()` (`…/views/week`) |
 | `day` | Time grid for one day | `provideSchedulerDayView()` (`…/views/day`) |
 | `year` | Twelve mini-months | `provideSchedulerYearView()` (`…/views/year`) |
@@ -408,7 +408,7 @@ headerToolbar = { left: 'prev,next today', center: 'title', right: 'month,week,d
 </sch-scheduler>
 ```
 
-**Your own toolbar or view:** place any component inside `<sch-scheduler>` and call `injectSchedulerContext()` from `ng-scheduler-kit/context`. It exposes `view()`, `date()`, `range()`, `title()`, `occurrences()`, `selection()`, `next()`, `prev()`, `today()` and `setView()`. A custom view is a `SchedulerViewDefinition` (`type`, `labelKey`, `component`, `range`, `step`, `title`, plus optional `period` and `data`) registered with `provideSchedulerView()`.
+**Your own toolbar or view:** place any component inside `<sch-scheduler>` and call `injectSchedulerContext()` from `ng-fullcalender/context`. It exposes `view()`, `date()`, `range()`, `title()`, `occurrences()`, `selection()`, `next()`, `prev()`, `today()` and `setView()`. A custom view is a `SchedulerViewDefinition` (`type`, `labelKey`, `component`, `range`, `step`, `title`, plus optional `period` and `data`) registered with `provideSchedulerView()`.
 
 ## Theming
 
@@ -424,7 +424,7 @@ sch-scheduler {
 ```
 
 ```scss
-@use 'ng-scheduler-kit/styles' as sch;
+@use 'ng-fullcalender/styles' as sch;
 
 .my-calendar {
   @include sch.theme(('accent': #2563eb, 'weekend': #fafafa));
@@ -467,7 +467,7 @@ The default English text is exported as `DEFAULT_TEXT`, and its keys are typed b
 ## NgModule apps
 
 ```ts
-import { SchedulerKitModule } from 'ng-scheduler-kit/module'; // also registers every view
+import { SchedulerKitModule } from 'ng-fullcalender/module'; // also registers every view
 
 @NgModule({ imports: [SchedulerKitModule] })
 export class CalendarModule {}
@@ -497,7 +497,7 @@ The API reference this follows also has these features, which aren't implemented
 
 ```
 .
-├── projects/ng-scheduler-kit/        # the library
+├── projects/ng-fullcalender/        # the library
 │   ├── src/lib/core/                 # Angular-free logic: dates, normalization, layout, recurrence
 │   ├── src/lib/state/                # store, context, text, view registry
 │   ├── src/lib/components/           # root, toolbar, body, popover, templates
@@ -511,25 +511,25 @@ The API reference this follows also has these features, which aren't implemented
 | Task | Command |
 | --- | --- |
 | Install | `npm ci` |
-| Build the library | `npx ng build ng-scheduler-kit` (add `--watch` while developing) |
+| Build the library | `npx ng build ng-fullcalender` (add `--watch` while developing) |
 | Run the demo | `npx ng serve sample` |
-| Tests | `npx ng test ng-scheduler-kit --watch=false` and `npx ng test sample --watch=false` |
+| Tests | `npx ng test ng-fullcalender --watch=false` and `npx ng test sample --watch=false` |
 
 A one-off `ng build` wipes `dist/` and breaks a running `ng serve`. Use `--watch`, or restart the dev server after a build.
 
-**Publishing:** run `npx ng build ng-scheduler-kit`, then `cd dist/ng-scheduler-kit`, `npm pack --dry-run`, `npm login` and `npm publish --access public`.
+**Publishing:** run `npx ng build ng-fullcalender`, then `cd dist/ng-fullcalender`, `npm pack --dry-run`, `npm login` and `npm publish --access public`.
 
 ## License
 
-ng-scheduler-kit uses the **MIT License with an attribution requirement** (see [LICENSE](projects/ng-scheduler-kit/LICENSE)). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
+ng-fullcalender uses the **MIT License with an attribution requirement** (see [LICENSE](projects/ng-fullcalender/LICENSE)). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
 
-> Any application, website or other product that uses ng-scheduler-kit must display the text **"Powered by ng-scheduler-kit"** with a working link to **[PROJECT URL]** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
+> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **[PROJECT URL]** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
 
 For example:
 
 ```html
 <footer>
-  Powered by <a href="[PROJECT URL]" target="_blank" rel="noopener">ng-scheduler-kit</a>
+  Powered by <a href="[PROJECT URL]" target="_blank" rel="noopener">ng-fullcalender</a>
 </footer>
 ```
 
