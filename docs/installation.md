@@ -11,7 +11,7 @@ npm install ng-fullcalender
 The library lives inside this Angular workspace, so build it first, then install the built package into your app:
 
 ```bash
-git clone https://github.com/<your-user>/ng-fullcalender.git
+git clone https://github.com/siva-geddada/ng-fullCalender.git
 cd ng-fullcalender
 npm ci
 npx ng build ng-fullcalender                 # → dist/ng-fullcalender

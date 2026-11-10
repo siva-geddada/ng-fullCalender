@@ -76,7 +76,7 @@ npm install ng-fullcalender
 The library lives inside this Angular workspace, so build it first, then install the built package into your app:
 
 ```bash
-git clone https://github.com/<your-user>/ng-fullcalender.git
+git clone https://github.com/siva-geddada/ng-fullCalender.git
 cd ng-fullcalender
 npm ci
 npx ng build ng-fullcalender                 # → dist/ng-fullcalender
@@ -523,13 +523,13 @@ A one-off `ng build` wipes `dist/` and breaks a running `ng serve`. Use `--watch
 
 ng-fullcalender uses the **MIT License with an attribution requirement** (see [LICENSE](projects/ng-fullcalender/LICENSE)). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
 
-> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **[PROJECT URL]** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
+> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **https://builds.siva-geddada.in/projects/ng-fullcalender/docs/** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
 
 For example:
 
 ```html
 <footer>
-  Powered by <a href="[PROJECT URL]" target="_blank" rel="noopener">ng-fullcalender</a>
+  Powered by <a href="https://builds.siva-geddada.in/projects/ng-fullcalender/docs/" target="_blank" rel="noopener">ng-fullcalender</a>
 </footer>
 ```
 

@@ -2,13 +2,13 @@
 
 ng-fullcalender uses the **MIT License with an attribution requirement** (full text below). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
 
-> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **[PROJECT URL]** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
+> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **https://builds.siva-geddada.in/projects/ng-fullcalender/docs/** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
 
 For example:
 
 ```html
 <footer>
-  Powered by <a href="[PROJECT URL]" target="_blank" rel="noopener">ng-fullcalender</a>
+  Powered by <a href="https://builds.siva-geddada.in/projects/ng-fullcalender/docs/" target="_blank" rel="noopener">ng-fullcalender</a>
 </footer>
 ```
 
@@ -21,7 +21,7 @@ To use it without the credit, ask the copyright holder for written permission.
 ```text
 MIT License with Attribution Requirement
 
-Copyright (c) 2026 [COPYRIGHT HOLDER]
+Copyright (c) 2026 Siva Geddada
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ furnished to do so, subject to the following conditions:
 2. Attribution. Any application, website or other product that uses the
    Software, in whole or in part, in original or modified form, must display
    the text "Powered by ng-fullcalender" together with a working hyperlink to
-   [PROJECT URL] in a location that is reasonably visible to its end users,
+   https://builds.siva-geddada.in/projects/ng-fullcalender/docs/ in a location that is reasonably visible to its end users,
    such as an "About" page, a credits or acknowledgements screen, a help page,
    or the application footer. The attribution must not be hidden, obscured or
    removed, and must remain in place for as long as the Software is used.

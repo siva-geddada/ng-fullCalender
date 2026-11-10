@@ -13,6 +13,16 @@
     "signals"
   ],
   "license": "SEE LICENSE IN LICENSE",
+  "author": "Siva Geddada",
+  "homepage": "https://builds.siva-geddada.in/projects/ng-fullcalender/docs/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siva-geddada/ng-fullCalender.git",
+    "directory": "projects/ng-fullcalender"
+  },
+  "bugs": {
+    "url": "https://github.com/siva-geddada/ng-fullCalender/issues"
+  },
   "peerDependencies": {
     "@angular/common": ">=22.0.0",
     "@angular/core": ">=22.0.0"
