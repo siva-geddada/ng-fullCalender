@@ -63,10 +63,6 @@
     </aside>
 
     <section class="demo__main-pane" aria-label="Calendar">
-      <div class="demo__summary">
-        <div class="demo__summary-left"><span class="demo__live-dot" aria-hidden="true"></span><span role="status">{{ status() }}</span></div>
-        <div class="demo__summary-meta"><span>{{ events().length }} events</span><span class="demo__summary-separator">·</span><span>{{ resources.length }} teams</span></div>
-      </div>
       <div class="demo__calendar-panel">
         <ngx-calendar
           #scheduler
@@ -102,10 +98,6 @@
           (eventAdd)="syncFromScheduler()"
           (eventRemove)="syncFromScheduler()"
           (eventClick)="onEventClick($event)"
-          (eventDrop)="status.set('Event moved. Drag again or resize to explore editing.')"
-          (eventResizeStop)="status.set('Event resized.')"
-          (eventResourceChange)="status.set('Event moved to another resource.')"
-          (moreClick)="status.set('Showing more events for the selected day.')"
         >
           @if (customTemplates()) {
             <ng-template ngxCalendarEvent let-event="event" let-compact="compact">

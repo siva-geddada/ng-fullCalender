@@ -47,6 +47,7 @@ describe('App', () => {
     const root = fixture.nativeElement as HTMLElement;
     expect(root.querySelector('.demo__settings-sidebar .demo__controls select')).not.toBeNull();
     expect(root.querySelector('.demo__main-pane ngx-calendar')).not.toBeNull();
+    expect(root.querySelector('.demo__summary')).toBeNull();
     expect(root.querySelector<HTMLImageElement>('.demo__brand-mark')?.getAttribute('src')).toBe('calendar-kit-mark.svg');
   });
 

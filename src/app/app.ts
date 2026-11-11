@@ -64,7 +64,6 @@ export class App {
   protected readonly showEmptyDays = signal(false);
   protected readonly eventPopover = signal(true);
   protected readonly customTemplates = signal(false);
-  protected readonly status = signal('Select a date to add an event, or click an event to edit it.');
   protected readonly editor = signal<EventDraft | null>(null);
   protected readonly editorError = signal('');
   protected readonly eventTypes = ['Meeting', 'Focus', 'Deadline', 'Leave', 'Other'];
@@ -206,7 +205,6 @@ export class App {
       this.scheduler().addEvent(event);
     } else if (previous) this.scheduler().updateEvent(event);
     else this.scheduler().addEvent(event);
-    this.status.set(`${previous ? 'Updated' : 'Added'} ${title}.`);
     this.closeEditor();
   }
 
@@ -218,7 +216,6 @@ export class App {
       if (series) this.excludeOccurrence(series, draft.occurrenceStart);
     } else if (draft.id !== null) this.scheduler().removeEvent(draft.id);
     else return;
-    this.status.set(`Removed ${draft.title}.`);
     this.closeEditor();
   }
 

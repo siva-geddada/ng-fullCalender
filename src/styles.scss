@@ -74,4 +74,4 @@ body { background: #f4f7fb; }
 
 .demo__workspace { display: grid; grid-template-columns: minmax(16rem, 18rem) minmax(0, 1fr); align-items: start; gap: 0.875rem; }
 .demo__settings-sidebar { min-width: 0; }
-.demo__main-pane { display: flex; flex-direction: column; gap: 0.6rem; min-width: 0; }
+.demo__main-pane { min-width: 0; }
