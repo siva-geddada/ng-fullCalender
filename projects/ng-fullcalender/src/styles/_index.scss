@@ -1,4 +1,0 @@
-// Public Sass API: `@use 'ng-fullcalender/styles' as sch;`
-//   .brand-scheduler { @include sch.theme(('accent': #0f766e, 'radius': 4px)); }
-//   $tokens: sch.$light;
-@forward 'tokens' show theme, emit, get, $light, $dark;

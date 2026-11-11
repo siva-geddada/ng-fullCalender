@@ -1,4 +1,4 @@
-# ng-fullCalender
+# ngx-calendar-kit
 
 An event scheduler (calendar) for **Angular 22+**, built with signals and styled with SCSS. It has month, week, day, year and agenda views, plus timelines at day, week, month and year scale. Every view shares the same event model, popovers, selection, and drag & resize behavior.
 
@@ -70,7 +70,7 @@ An event scheduler (calendar) for **Angular 22+**, built with signals and styled
 ### From npm (after the package is published)
 
 ```bash
-npm install ng-fullcalender
+npm install ngx-calendar-kit
 ```
 
 ### From this Git repository
@@ -79,13 +79,13 @@ The library lives inside this Angular workspace, so build it first, then install
 
 ```bash
 git clone https://github.com/siva-geddada/ng-fullCalender.git
-cd ng-fullcalender
+cd ng-fullCalender
 npm ci
-npx ng build ng-fullcalender                 # → dist/ng-fullcalender
+npx ng build ngx-calendar-kit                 # → dist/ngx-calendar-kit
 
 cd /path/to/your-angular-app
-npm install /path/to/ng-fullcalender/dist/ng-fullcalender
-# or: cd dist/ng-fullcalender && npm pack, then npm install the generated .tgz
+npm install /path/to/ng-fullCalender/dist/ngx-calendar-kit
+# or: cd dist/ngx-calendar-kit && npm pack, then npm install the generated .tgz
 ```
 
 ## Quick start
@@ -93,7 +93,7 @@ npm install /path/to/ng-fullcalender/dist/ng-fullcalender
 ```ts
 // app.config.ts
 import { ApplicationConfig } from '@angular/core';
-import { provideSchedulerViews } from 'ng-fullcalender/views/all';
+import { provideSchedulerViews } from 'ngx-calendar-kit/views/all';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideSchedulerViews()], // month, week, day, year, agenda, timeline*
@@ -103,13 +103,13 @@ export const appConfig: ApplicationConfig = {
 ```ts
 // calendar.component.ts
 import { Component, signal } from '@angular/core';
-import { SCHEDULER_IMPORTS, SchedulerEvent } from 'ng-fullcalender';
+import { CALENDAR_IMPORTS, SchedulerEvent } from 'ngx-calendar-kit';
 
 @Component({
   selector: 'app-calendar',
-  imports: [SCHEDULER_IMPORTS],
+  imports: [CALENDAR_IMPORTS],
   template: `
-    <sch-scheduler
+    <ngx-calendar
       height="parent"
       [events]="events()"
       [(view)]="view"
@@ -131,7 +131,7 @@ export class CalendarComponent {
 }
 ```
 
-`SCHEDULER_IMPORTS` contains the root component, the toolbar, the body and the template directives. A `<sch-scheduler>` with no children renders the toolbar and body itself.
+`CALENDAR_IMPORTS` contains the root component, the toolbar, the body and the template directives. A `<ngx-calendar>` with no children renders the toolbar and body itself.
 
 ## Height & layout
 
@@ -155,7 +155,7 @@ A full-page calendar:
   height: 100dvh;
 }
 
-.page sch-scheduler {
+.page ngx-calendar {
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -164,7 +164,7 @@ A full-page calendar:
 ```html
 <div class="page">
   <app-header />
-  <sch-scheduler height="parent" [events]="events()" />
+  <ngx-calendar height="parent" [events]="events()" />
 </div>
 ```
 
@@ -211,7 +211,7 @@ Payloads describe an occurrence of a series as an `ExpandedEvent` (`id`, `origin
 
 | `view` | Shows | Provider (import path) |
 | --- | --- | --- |
-| `month` | 6-week grid | `provideSchedulerMonthView()` (`ng-fullcalender/views/month`) |
+| `month` | 6-week grid | `provideSchedulerMonthView()` (`ngx-calendar-kit/views/month`) |
 | `week` | Time grid, aligned week or `numberOfDays` | `provideSchedulerWeekView()` (`…/views/week`) |
 | `day` | Time grid for one day | `provideSchedulerDayView()` (`…/views/day`) |
 | `year` | Twelve mini-months | `provideSchedulerYearView()` (`…/views/year`) |
@@ -233,7 +233,7 @@ The `views` input picks which registered views are available, in which order. It
 The scheduler keeps a **working copy** of `events`. Drags, resizes and the `addEvent`/`updateEvent`/`removeEvent` methods change that copy, and the scheduler reports each change. Any new value you pass to `[events]` replaces the working copy.
 
 ```html
-<sch-scheduler
+<ngx-calendar
   #scheduler
   [events]="events()"
   [editable]="true"
@@ -371,7 +371,7 @@ async onDrop(d: EventDropPayload) {
 
 ### Methods
 
-Reach them with a template reference (`#s="schScheduler"`, or `#s` on the element) or `viewChild(SchScheduler)`:
+Reach them with a template reference (`#s="ngxCalendar"`, or `#s` on the element) or `viewChild(NgxCalendar)`:
 
 | Method | |
 | --- | --- |
@@ -385,7 +385,7 @@ Reach them with a template reference (`#s="schScheduler"`, or `#s` on the elemen
 
 ### Toolbar
 
-`headerToolbar` sections accept `prev`, `next`, `today`, `title` and view names. A comma joins items into one group and a space separates groups. View names are shown as a dropdown. Use `<sch-scheduler-toolbar switcher="buttons" />` for a row of buttons instead. Set `[headerToolbar]="false"` to hide the toolbar.
+`headerToolbar` sections accept `prev`, `next`, `today`, `title` and view names. A comma joins items into one group and a space separates groups. View names are shown as a dropdown. Use `<ngx-calendar-toolbar switcher="buttons" />` for a row of buttons instead. Set `[headerToolbar]="false"` to hide the toolbar.
 
 ```ts
 headerToolbar = { left: 'prev,next today', center: 'title', right: 'month,week,day,year,agenda,timelineWeek' };
@@ -394,39 +394,39 @@ headerToolbar = { left: 'prev,next today', center: 'title', right: 'month,week,d
 ## Customizing the layout and templates
 
 ```html
-<sch-scheduler [events]="events()">
+<ngx-calendar [events]="events()">
   <!-- Event body (all views) -->
-  <ng-template schEvent let-occ let-event="event" let-compact="compact">
+  <ng-template ngxCalendarEvent let-occ let-event="event" let-compact="compact">
     <strong>{{ event.title }}</strong>
   </ng-template>
 
   <!-- Day headers (week/day columns, month cells) -->
-  <ng-template schDayHeader let-date let-today="today">{{ date | date: 'EEE d' }}</ng-template>
+  <ng-template ngxCalendarDayHeader let-date let-today="today">{{ date | date: 'EEE d' }}</ng-template>
 
   <!-- Agenda date headers -->
-  <ng-template schAgendaDateHeader let-date let-events="events">
+  <ng-template ngxCalendarAgendaDateHeader let-date let-events="events">
     {{ date | date: 'fullDate' }} · {{ events.length }}
   </ng-template>
-</sch-scheduler>
+</ngx-calendar>
 ```
 
-**Your own toolbar or view:** place any component inside `<sch-scheduler>` and call `injectSchedulerContext()` from `ng-fullcalender/context`. It exposes `view()`, `date()`, `range()`, `title()`, `occurrences()`, `selection()`, `next()`, `prev()`, `today()` and `setView()`. A custom view is a `SchedulerViewDefinition` (`type`, `labelKey`, `component`, `range`, `step`, `title`, plus optional `period` and `data`) registered with `provideSchedulerView()`.
+**Your own toolbar or view:** place any component inside `<ngx-calendar>` and call `injectSchedulerContext()` from `ngx-calendar-kit/context`. It exposes `view()`, `date()`, `range()`, `title()`, `occurrences()`, `selection()`, `next()`, `prev()`, `today()` and `setView()`. A custom view is a `SchedulerViewDefinition` (`type`, `labelKey`, `component`, `range`, `step`, `title`, plus optional `period` and `data`) registered with `provideSchedulerView()`.
 
 ## Theming
 
 Styles are written in SCSS and compiled into the component, so you don't need a global stylesheet. The tokens are CSS variables with zero specificity, so any rule of yours wins:
 
 ```scss
-sch-scheduler {
-  --sch-accent: #2563eb;
-  --sch-accent-text: #1d4ed8;
-  --sch-today: #eff6ff;
-  --sch-hour-height: 4rem;
+ngx-calendar {
+  --ngx-calendar-accent: #2563eb;
+  --ngx-calendar-accent-text: #1d4ed8;
+  --ngx-calendar-today: #eff6ff;
+  --ngx-calendar-hour-height: 4rem;
 }
 ```
 
 ```scss
-@use 'ng-fullcalender/styles' as sch;
+@use 'ngx-calendar-kit/styles' as sch;
 
 .my-calendar {
   @include sch.theme(('accent': #2563eb, 'weekend': #fafafa));
@@ -452,7 +452,7 @@ sch-scheduler {
 ## Localization
 
 ```html
-<sch-scheduler
+<ngx-calendar
   locale="de-DE"
   [firstDayOfWeek]="1"
   [timeFormat]="{ format: '24h' }"
@@ -469,7 +469,7 @@ The default English text is exported as `DEFAULT_TEXT`, and its keys are typed b
 ## NgModule apps
 
 ```ts
-import { SchedulerKitModule } from 'ng-fullcalender/module'; // also registers every view
+import { SchedulerKitModule } from 'ngx-calendar-kit/module'; // also registers every view
 
 @NgModule({ imports: [SchedulerKitModule] })
 export class CalendarModule {}
@@ -499,7 +499,7 @@ The API reference this follows also has these features, which aren't implemented
 
 ```
 .
-├── projects/ng-fullcalender/        # the library
+├── projects/ngx-calendar-kit/        # the library
 │   ├── src/lib/core/                 # Angular-free logic: dates, normalization, layout, recurrence
 │   ├── src/lib/state/                # store, context, text, view registry
 │   ├── src/lib/components/           # root, toolbar, body, popover, templates
@@ -513,19 +513,19 @@ The API reference this follows also has these features, which aren't implemented
 | Task | Command |
 | --- | --- |
 | Install | `npm ci` |
-| Build the library | `npx ng build ng-fullcalender` (add `--watch` while developing) |
+| Build the library | `npx ng build ngx-calendar-kit` (add `--watch` while developing) |
 | Run the demo | `npx ng serve sample` |
-| Tests | `npx ng test ng-fullcalender --watch=false` and `npx ng test sample --watch=false` |
+| Tests | `npx ng test ngx-calendar-kit --watch=false` and `npx ng test sample --watch=false` |
 
 A one-off `ng build` wipes `dist/` and breaks a running `ng serve`. Use `--watch`, or restart the dev server after a build.
 
-**Publishing:** run `npx ng build ng-fullcalender`, then `cd dist/ng-fullcalender`, `npm pack --dry-run`, `npm login` and `npm publish --access public`.
+**Publishing:** run `npx ng build ngx-calendar-kit`, then `cd dist/ngx-calendar-kit`, `npm pack --dry-run`, `npm login` and `npm publish --access public`.
 
 ## License
 
-ng-fullcalender uses the **MIT License with an attribution requirement** (see [LICENSE](projects/ng-fullcalender/LICENSE)). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
+ngx-calendar-kit uses the **MIT License with an attribution requirement** (see [LICENSE](projects/ngx-calendar-kit/LICENSE)). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
 
-> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **https://builds.siva-geddada.in/projects/ng-fullcalender/docs/** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
+> Any application, website or other product that uses the library must display the text **"Powered by ng-fullcalender"** with a working link to **https://builds.siva-geddada.in/projects/ng-fullcalender/docs/** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
 
 For example:
 

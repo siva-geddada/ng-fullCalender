@@ -86,7 +86,7 @@
 
 ### Methods
 
-Reach them with a template reference (`#s="schScheduler"`, or `#s` on the element) or `viewChild(SchScheduler)`:
+Reach them with a template reference (`#s="ngxCalendar"`, or `#s` on the element) or `viewChild(NgxCalendar)`:
 
 | Method | |
 | --- | --- |
@@ -100,7 +100,7 @@ Reach them with a template reference (`#s="schScheduler"`, or `#s` on the elemen
 
 ### Toolbar
 
-`headerToolbar` sections accept `prev`, `next`, `today`, `title` and view names. A comma joins items into one group and a space separates groups. View names are shown as a dropdown. Use `<sch-scheduler-toolbar switcher="buttons" />` for a row of buttons instead. Set `[headerToolbar]="false"` to hide the toolbar.
+`headerToolbar` sections accept `prev`, `next`, `today`, `title` and view names. A comma joins items into one group and a space separates groups. View names are shown as a dropdown. Use `<ngx-calendar-toolbar switcher="buttons" />` for a row of buttons instead. Set `[headerToolbar]="false"` to hide the toolbar.
 
 ```ts
 headerToolbar = { left: 'prev,next today', center: 'title', right: 'month,week,day,year,agenda,timelineWeek' };

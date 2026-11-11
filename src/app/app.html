@@ -1,33 +1,191 @@
-<main class="demo">
+<main class="demo" [class.demo--dark]="theme() === 'dark'">
   <header class="demo__header">
-    <h1>ng-fullCalender</h1>
-    <button type="button" (click)="toggleTheme()">{{ theme() === 'dark' ? 'Light' : 'Dark' }} theme</button>
+    <div class="demo__brand">
+      <img class="demo__brand-mark" src="calendar-kit-mark.svg" alt="" width="48" height="48" />
+      <div>
+        <span class="demo__eyebrow">WORKSPACE / CALENDAR</span>
+        <h1>Calendar Kit</h1>
+        <p>Plan work, explore views, and manage your events.</p>
+      </div>
+    </div>
+    <div class="demo__header-actions">
+      <button type="button" class="demo__theme-button" (click)="toggleTheme()" [attr.aria-label]="theme() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'">
+        <span aria-hidden="true">{{ theme() === 'dark' ? '☀' : '◐' }}</span> {{ theme() === 'dark' ? 'Light mode' : 'Dark mode' }}
+      </button>
+      <button type="button" class="demo__add" (click)="addExample()"><span aria-hidden="true">＋</span> New event</button>
+    </div>
   </header>
 
-  <sch-scheduler
-    #scheduler
-    class="demo__scheduler"
-    height="parent"
-    [events]="events()"
-    [resources]="resources"
-    [views]="views"
-    [headerToolbar]="toolbar"
-    [(view)]="view"
-    [(date)]="date"
-    [theme]="theme()"
-    [editable]="true"
-    [eventPopover]="true"
-    [businessHours]="true"
-    [navLinks]="true"
-    slotMinTime="06:00"
-    slotMaxTime="22:00"
-    timelineMinTime="07:00"
-    timelineMaxTime="20:00"
-    (dateSelect)="onDateSelect($event)"
-    (eventChange)="syncFromScheduler()"
-    (eventAdd)="syncFromScheduler()"
-  >
-    <sch-scheduler-toolbar />
-    <sch-scheduler-body />
-  </sch-scheduler>
+  <div class="demo__workspace">
+    <aside class="demo__settings-sidebar" aria-label="Calendar settings">
+      <section class="demo__controls" aria-label="Calendar options">
+        <div class="demo__control-card">
+          <div class="demo__card-heading"><span class="demo__card-icon" aria-hidden="true">◫</span><h2>Display</h2></div>
+          <div class="demo__selects">
+            <label>View
+              <select [value]="view()" (change)="view.set($any($event.target).value)">
+                @for (item of views; track item) { <option [value]="item">{{ item }}</option> }
+              </select>
+            </label>
+            <label>Locale
+              <select [value]="locale()" (change)="locale.set($any($event.target).value)">
+                <option value="en-US">English (US)</option>
+                <option value="en-GB">English (UK)</option>
+                <option value="fr-FR">Français</option>
+                <option value="de-DE">Deutsch</option>
+              </select>
+            </label>
+            <label>Clock
+              <select [value]="timeFormat()" (change)="timeFormat.set($any($event.target).value)">
+                <option value="12h">12-hour</option><option value="24h">24-hour</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="demo__control-card">
+          <div class="demo__card-heading"><span class="demo__card-icon" aria-hidden="true">✥</span><h2>Interactions</h2></div>
+          <div class="demo__switches">
+            <label class="demo__switch"><span>Drag & resize</span><input type="checkbox" [checked]="editable()" (change)="editable.set($any($event.target).checked)" /><span class="demo__switch-track" aria-hidden="true"></span></label>
+            <label class="demo__switch"><span>Date selection</span><input type="checkbox" [checked]="selectable()" (change)="selectable.set($any($event.target).checked)" /><span class="demo__switch-track" aria-hidden="true"></span></label>
+            <label class="demo__switch"><span>Event previews</span><input type="checkbox" [checked]="eventPopover()" (change)="eventPopover.set($any($event.target).checked)" /><span class="demo__switch-track" aria-hidden="true"></span></label>
+          </div>
+        </div>
+        <div class="demo__control-card">
+          <div class="demo__card-heading"><span class="demo__card-icon" aria-hidden="true">▦</span><h2>Details</h2></div>
+          <div class="demo__switches demo__switches--two">
+            <label class="demo__switch"><span>Business hours</span><input type="checkbox" [checked]="businessHours()" (change)="businessHours.set($any($event.target).checked)" /><span class="demo__switch-track" aria-hidden="true"></span></label>
+            <label class="demo__switch"><span>Week numbers</span><input type="checkbox" [checked]="weekNumbers()" (change)="weekNumbers.set($any($event.target).checked)" /><span class="demo__switch-track" aria-hidden="true"></span></label>
+            <label class="demo__switch"><span>Empty days</span><input type="checkbox" [checked]="showEmptyDays()" (change)="showEmptyDays.set($any($event.target).checked)" /><span class="demo__switch-track" aria-hidden="true"></span></label>
+            <label class="demo__switch"><span>Templates</span><input type="checkbox" [checked]="customTemplates()" (change)="customTemplates.set($any($event.target).checked)" /><span class="demo__switch-track" aria-hidden="true"></span></label>
+          </div>
+        </div>
+      </section>
+    </aside>
+
+    <section class="demo__main-pane" aria-label="Calendar">
+      <div class="demo__summary">
+        <div class="demo__summary-left"><span class="demo__live-dot" aria-hidden="true"></span><span role="status">{{ status() }}</span></div>
+        <div class="demo__summary-meta"><span>{{ events().length }} events</span><span class="demo__summary-separator">·</span><span>{{ resources.length }} teams</span></div>
+      </div>
+      <div class="demo__calendar-panel">
+        <ngx-calendar
+          #scheduler
+          class="demo__scheduler"
+          height="auto"
+          [events]="events()"
+          [resources]="resources"
+          [views]="views"
+          [headerToolbar]="toolbar"
+          [(view)]="view"
+          [(date)]="date"
+          [theme]="theme()"
+          [locale]="locale()"
+          [timeFormat]="{ format: timeFormat() }"
+          [editable]="editable()"
+          [selectable]="selectable()"
+          [eventPopover]="eventPopover()"
+          [businessHours]="businessHours()"
+          [weekNumbers]="weekNumbers()"
+          [showEmptyDays]="showEmptyDays()"
+          [navLinks]="true"
+          [maxEventsVisible]="3"
+          [agendaDays]="21"
+          [snapDuration]="15"
+          [timelineSlotWidth]="96"
+          resourceAreaHeaderContent="Teams"
+          slotMinTime="06:00"
+          slotMaxTime="22:00"
+          timelineMinTime="07:00"
+          timelineMaxTime="20:00"
+          (dateSelect)="onDateSelect($event)"
+          (eventChange)="syncFromScheduler()"
+          (eventAdd)="syncFromScheduler()"
+          (eventRemove)="syncFromScheduler()"
+          (eventClick)="onEventClick($event)"
+          (eventDrop)="status.set('Event moved. Drag again or resize to explore editing.')"
+          (eventResizeStop)="status.set('Event resized.')"
+          (eventResourceChange)="status.set('Event moved to another resource.')"
+          (moreClick)="status.set('Showing more events for the selected day.')"
+        >
+          @if (customTemplates()) {
+            <ng-template ngxCalendarEvent let-event="event" let-compact="compact">
+              <span class="demo__event">{{ compact ? '● ' : 'Event · ' }}{{ event.title }}</span>
+            </ng-template>
+            <ng-template ngxCalendarDayHeader let-day let-today="today">
+              {{ day | date: 'EEE d' }}{{ today ? ' · Today' : '' }}
+            </ng-template>
+            <ng-template ngxCalendarAgendaDateHeader let-day let-events="events">
+              {{ day | date: 'fullDate' }} · {{ events.length }} events
+            </ng-template>
+          }
+          <ngx-calendar-toolbar />
+          <ngx-calendar-body />
+        </ngx-calendar>
+      </div>
+    </section>
+  </div>
+  <footer class="demo__footer">Calendar Kit demo <span>·</span> <a href="https://builds.siva-geddada.in/projects/ng-fullcalender/docs/">Powered by ng-fullcalender</a></footer>
 </main>
+
+@if (editor(); as draft) {
+  <div class="demo__modal-layer" (keydown.escape)="closeEditor()">
+    <section class="demo__modal" role="dialog" aria-modal="true" aria-labelledby="event-editor-title">
+      <header class="demo__modal-header">
+        <div>
+          <h2 id="event-editor-title">{{ draft.seriesId !== null ? 'Edit occurrence' : draft.id === null ? 'Add event' : 'Edit event' }}</h2>
+          <p>{{ draft.seriesId !== null ? 'Only this occurrence will change; the repeating series stays intact.' : 'Changes appear immediately on the calendar.' }}</p>
+        </div>
+        <button type="button" class="demo__close" aria-label="Close editor" (click)="closeEditor()">×</button>
+      </header>
+      <form class="demo__form" (ngSubmit)="saveEvent()">
+        <label class="demo__field demo__field--wide">Event name
+          <input #eventTitle name="title" type="text" [(ngModel)]="draft.title" required maxlength="120" placeholder="e.g. Team meeting" />
+        </label>
+        <label class="demo__field">Event type
+          <select name="type" [(ngModel)]="draft.type">
+            @for (type of eventTypes; track type) { <option [value]="type">{{ type }}</option> }
+          </select>
+        </label>
+        <label class="demo__field">Team / resource
+          <select name="resource" [(ngModel)]="draft.resourceId">
+            <option value="">Unassigned</option>
+            @for (resource of resources; track resource.id) { <option [value]="resource.id">{{ resource.title }}</option> }
+          </select>
+        </label>
+        <label class="demo__check demo__field--wide"><input name="allDay" type="checkbox" [(ngModel)]="draft.allDay" /> All-day event</label>
+        <label class="demo__field">Start date
+          <input name="startDate" type="date" [(ngModel)]="draft.startDate" required />
+        </label>
+        @if (!draft.allDay) {
+          <label class="demo__field">Start time
+            <input name="startTime" type="time" [(ngModel)]="draft.startTime" required />
+          </label>
+        }
+        <label class="demo__field">{{ draft.allDay ? 'Last day (inclusive)' : 'End date' }}
+          <input name="endDate" type="date" [(ngModel)]="draft.endDate" required />
+        </label>
+        @if (!draft.allDay) {
+          <label class="demo__field">End time
+            <input name="endTime" type="time" [(ngModel)]="draft.endTime" required />
+          </label>
+        }
+        <label class="demo__field">Event color
+          <input name="color" type="color" [(ngModel)]="draft.color" />
+        </label>
+        <label class="demo__field demo__field--wide">Repeat rule (optional)
+          <input name="recurrence" type="text" [(ngModel)]="draft.recurrence" placeholder="FREQ=WEEKLY;BYDAY=MO,WE" />
+        </label>
+        <label class="demo__field demo__field--wide">Description
+          <textarea name="description" rows="3" [(ngModel)]="draft.description" placeholder="Notes about this event"></textarea>
+        </label>
+        @if (editorError()) { <p class="demo__error demo__field--wide" role="alert">{{ editorError() }}</p> }
+        <div class="demo__actions demo__field--wide">
+          @if (draft.id !== null || draft.seriesId !== null) { <button type="button" class="demo__danger" (click)="removeEvent()">Delete {{ draft.seriesId !== null ? 'occurrence' : 'event' }}</button> }
+          <span class="demo__actions-spacer"></span>
+          <button type="button" (click)="closeEditor()">Cancel</button>
+          <button type="submit" class="demo__primary">{{ draft.id === null && draft.seriesId === null ? 'Add event' : 'Save changes' }}</button>
+        </div>
+      </form>
+    </section>
+  </div>
+}

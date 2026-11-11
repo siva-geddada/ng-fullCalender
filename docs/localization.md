@@ -1,7 +1,7 @@
 # Localization
 
 ```html
-<sch-scheduler
+<ngx-calendar
   locale="de-DE"
   [firstDayOfWeek]="1"
   [timeFormat]="{ format: '24h' }"

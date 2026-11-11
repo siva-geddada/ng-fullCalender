@@ -8,8 +8,8 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "ng-fullcalender": ["./dist/ng-fullcalender"],
-      "ng-fullcalender/*": ["./dist/ng-fullcalender/*"]
+      "ngx-calendar-kit": ["./dist/ngx-calendar-kit"],
+      "ngx-calendar-kit/*": ["./dist/ngx-calendar-kit/*"]
     },
     "skipLibCheck": true,
     "isolatedModules": true,
@@ -32,10 +32,10 @@
       "path": "./tsconfig.spec.json"
     },
     {
-      "path": "./projects/ng-fullcalender/tsconfig.lib.json"
+      "path": "./projects/ngx-calendar-kit/tsconfig.lib.json"
     },
     {
-      "path": "./projects/ng-fullcalender/tsconfig.spec.json"
+      "path": "./projects/ngx-calendar-kit/tsconfig.spec.json"
     }
   ]
 }

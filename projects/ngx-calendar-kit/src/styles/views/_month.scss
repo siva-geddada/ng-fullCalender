@@ -1,0 +1,208 @@
+.ngx-calendar-month {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: auto;
+  border-top: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-month {
+  --_cols: repeat(7, minmax(0, 1fr));
+}
+
+.ngx-calendar-month--weeknums {
+  --_cols: 2.25rem repeat(7, minmax(0, 1fr));
+}
+
+.ngx-calendar-month__head {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: var(--_cols);
+  background: var(--ngx-calendar-header-bg);
+  border-bottom: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-month__weekday {
+  padding: 0.6875rem 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ngx-calendar-text-muted);
+  text-align: center;
+}
+
+.ngx-calendar-month__grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+}
+
+.ngx-calendar-month__week {
+  display: grid;
+  flex: 1 1 0;
+  grid-template-columns: var(--_cols);
+  // Day number, event lanes, "+N more", filler. Rows stretch to fill the scheduler height;
+  // the view fits --ngx-calendar-month-rows to the measured row height.
+  grid-template-rows: var(--ngx-calendar-month-head) repeat(var(--ngx-calendar-month-rows), var(--ngx-calendar-month-lane)) 1.375rem minmax(0, 1fr);
+  min-height: calc(var(--ngx-calendar-month-head) + var(--ngx-calendar-month-lane) + 1.375rem);
+  border-bottom: 1px solid var(--ngx-calendar-border);
+
+  &:last-child {
+    border-bottom: 0;
+  }
+
+  > .ngx-calendar-event {
+    z-index: 1;
+  }
+}
+
+// In auto-height mode every visible lane needs actual row space. Otherwise the
+// one-lane fixed-height minimum lets event bars overlap the following week.
+.ngx-calendar--auto-height .ngx-calendar-month__week {
+  flex: none;
+  min-height: calc(var(--ngx-calendar-month-head) + var(--ngx-calendar-month-rows) * var(--ngx-calendar-month-lane) + 2.375rem);
+}
+
+.ngx-calendar-month__cell {
+  grid-row: 1 / -1;
+  border-right: 1px solid var(--ngx-calendar-border);
+  touch-action: none;
+  transition: background-color 120ms ease;
+
+  &.ngx-calendar-month__cell--last {
+    border-right: 0;
+  }
+
+  &.ngx-calendar-is-weekend {
+    background: var(--ngx-calendar-weekend);
+  }
+
+  &.ngx-calendar-is-today {
+    background: var(--ngx-calendar-today-cell);
+  }
+
+  &.ngx-calendar-is-disabled {
+    background: repeating-linear-gradient(-45deg, var(--ngx-calendar-surface-alt) 0 6px, transparent 6px 12px);
+    cursor: not-allowed;
+  }
+
+  &.ngx-calendar-is-expanded {
+    background: var(--ngx-calendar-surface-hover);
+  }
+
+  &.ngx-calendar-is-picked {
+    background: color-mix(in srgb, var(--ngx-calendar-accent) 10%, var(--ngx-calendar-surface));
+    box-shadow: inset 0 0 0 2px var(--ngx-calendar-accent);
+  }
+
+  &.ngx-calendar-is-selected {
+    background: var(--ngx-calendar-selection);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--ngx-calendar-accent);
+    outline-offset: -2px;
+  }
+}
+
+.ngx-calendar-month__daynum {
+  grid-row: 1;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 0.5rem;
+  pointer-events: none;
+
+  > * {
+    pointer-events: auto;
+  }
+}
+
+.ngx-calendar-month__daynum-btn {
+  min-width: 1.875rem;
+  height: 1.875rem;
+  padding: 0 0.3125rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ngx-calendar-text);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--ngx-calendar-surface-hover);
+  }
+
+  .ngx-calendar-is-outside + .ngx-calendar-month__daynum & {
+    color: var(--ngx-calendar-outside-text);
+  }
+
+  .ngx-calendar-is-today + .ngx-calendar-month__daynum & {
+    background: var(--ngx-calendar-today);
+    color: var(--ngx-calendar-accent-text);
+    font-weight: 700;
+  }
+}
+
+.ngx-calendar-month__more {
+  z-index: 1;
+  align-self: center;
+  justify-self: start;
+  margin: 0 0.375rem;
+  padding: 0 0.375rem;
+  height: 1.375rem;
+  border: 0;
+  border-radius: var(--ngx-calendar-radius-xs);
+  background: transparent;
+  color: var(--ngx-calendar-accent-text);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+
+  &:hover {
+    background: var(--ngx-calendar-today);
+  }
+
+  &.ngx-calendar-is-active {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    box-shadow: inset 0 0 0 2px var(--ngx-calendar-accent);
+  }
+}
+
+.ngx-calendar-month__weeknum-head {
+  border-right: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-month__weeknum {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  padding-top: 0.75rem;
+  border-right: 1px solid var(--ngx-calendar-border);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--ngx-calendar-text-muted);
+  text-align: center;
+  background: var(--ngx-calendar-header-bg);
+}
+
+.ngx-calendar-is-disabled + .ngx-calendar-month__daynum .ngx-calendar-month__daynum-btn {
+  color: var(--ngx-calendar-outside-text);
+  text-decoration: line-through;
+}
+
+span.ngx-calendar-month__daynum-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: default;
+
+  &:hover {
+    background: transparent;
+  }
+}

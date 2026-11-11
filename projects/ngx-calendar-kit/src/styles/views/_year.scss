@@ -1,0 +1,159 @@
+.ngx-calendar-year {
+  display: block;
+  min-height: 0;
+  overflow-y: auto;
+  border-top: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-year__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--ngx-calendar-year-month-min), 1fr));
+  gap: 1rem 1.5rem;
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+.ngx-calendar-year__month {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.ngx-calendar-year__title {
+  align-self: flex-start;
+  padding: 0.125rem 0.25rem;
+  border: 0;
+  border-radius: var(--ngx-calendar-radius-xs);
+  background: transparent;
+  color: var(--ngx-calendar-text-strong);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--ngx-calendar-accent-text);
+  }
+}
+
+.ngx-calendar-year__weekdays,
+.ngx-calendar-year__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.ngx-calendar-year__weekdays span {
+  padding: 0.125rem 0;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--ngx-calendar-text-muted);
+  text-align: center;
+}
+
+.ngx-calendar-year__days {
+  row-gap: 2px;
+}
+
+.ngx-calendar-year__day {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 1.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ngx-calendar-radius-xs);
+  background: transparent;
+  color: var(--ngx-calendar-text);
+  font-size: 0.8125rem;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  touch-action: none;
+
+  &:hover {
+    background: var(--ngx-calendar-surface-hover);
+  }
+
+  &.ngx-calendar-is-weekend {
+    color: var(--ngx-calendar-text-muted);
+  }
+
+  &.ngx-calendar-has-events .ngx-calendar-year__num {
+    font-weight: 600;
+    color: var(--ngx-calendar-text-strong);
+  }
+
+  &.ngx-calendar-is-today .ngx-calendar-year__num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 999px;
+    background: var(--ngx-calendar-today);
+    color: var(--ngx-calendar-accent-text);
+    font-weight: 700;
+  }
+
+  // Range middle: tinted band; ends and a single picked day: solid accent.
+  &.ngx-calendar-is-picked {
+    border-radius: 0;
+    background: color-mix(in srgb, var(--ngx-calendar-accent) 14%, var(--ngx-calendar-surface));
+  }
+
+  &.ngx-calendar-is-single,
+  &.ngx-calendar-is-range-start,
+  &.ngx-calendar-is-range-end {
+    background: var(--ngx-calendar-accent);
+    color: var(--ngx-calendar-accent-contrast);
+
+    .ngx-calendar-year__num {
+      color: inherit !important;
+      background: transparent !important;
+    }
+
+    .ngx-calendar-year__dot {
+      background: currentColor;
+    }
+  }
+
+  &.ngx-calendar-is-single {
+    border-radius: var(--ngx-calendar-radius-xs);
+  }
+
+  &.ngx-calendar-is-range-start {
+    border-radius: var(--ngx-calendar-radius-xs) 0 0 var(--ngx-calendar-radius-xs);
+  }
+
+  &.ngx-calendar-is-range-end {
+    border-radius: 0 var(--ngx-calendar-radius-xs) var(--ngx-calendar-radius-xs) 0;
+  }
+
+  &.ngx-calendar-is-disabled {
+    color: var(--ngx-calendar-outside-text);
+    text-decoration: line-through;
+    cursor: not-allowed;
+
+    &:hover {
+      background: transparent;
+    }
+  }
+}
+
+.ngx-calendar-year__dots {
+  position: absolute;
+  bottom: 2px;
+  display: flex;
+  gap: 2px;
+}
+
+.ngx-calendar-year__dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--ngx-calendar-event-color, var(--ngx-calendar-accent));
+}
+
+.ngx-calendar-year__blank {
+  height: 1.75rem;
+}

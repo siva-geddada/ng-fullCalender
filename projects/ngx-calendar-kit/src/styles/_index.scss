@@ -1,0 +1,4 @@
+// Public Sass API: `@use 'ngx-calendar-kit/styles' as sch;`
+//   .brand-scheduler { @include sch.theme(('accent': #0f766e, 'radius': 4px)); }
+//   $tokens: sch.$light;
+@forward 'tokens' show theme, emit, get, $light, $dark;

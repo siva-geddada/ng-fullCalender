@@ -2,7 +2,8 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "cli": {
-    "packageManager": "npm"
+    "packageManager": "npm",
+    "analytics": "cd0cfb20-ddce-451a-853c-05cc63936551"
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -66,7 +67,7 @@
           "options": {
             "prebundle": {
               "exclude": [
-                "ng-fullcalender"
+                "ngx-calendar-kit"
               ]
             }
           }
@@ -76,20 +77,20 @@
         }
       }
     },
-    "ng-fullcalender": {
+    "ngx-calendar-kit": {
       "projectType": "library",
-      "root": "projects/ng-fullcalender",
-      "sourceRoot": "projects/ng-fullcalender/src",
-      "prefix": "sch",
+      "root": "projects/ngx-calendar-kit",
+      "sourceRoot": "projects/ngx-calendar-kit/src",
+      "prefix": "ngx",
       "architect": {
         "build": {
           "builder": "@angular/build:ng-packagr",
           "configurations": {
             "production": {
-              "tsConfig": "projects/ng-fullcalender/tsconfig.lib.prod.json"
+              "tsConfig": "projects/ngx-calendar-kit/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/ng-fullcalender/tsconfig.lib.json"
+              "tsConfig": "projects/ngx-calendar-kit/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -97,7 +98,7 @@
         "test": {
           "builder": "@angular/build:unit-test",
           "options": {
-            "tsConfig": "projects/ng-fullcalender/tsconfig.spec.json"
+            "tsConfig": "projects/ngx-calendar-kit/tsconfig.spec.json"
           }
         }
       }

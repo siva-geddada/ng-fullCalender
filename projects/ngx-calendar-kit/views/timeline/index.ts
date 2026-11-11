@@ -1,0 +1,11 @@
+export {
+  provideSchedulerTimelineViews,
+  provideSchedulerTimelineView,
+  TIMELINE_DAY_VIEW,
+  TIMELINE_WEEK_VIEW,
+  TIMELINE_MONTH_VIEW,
+  TIMELINE_YEAR_VIEW,
+  RESOURCE_TIMELINE_DAY_VIEW,
+  RESOURCE_TIMELINE_WEEK_VIEW,
+  RESOURCE_TIMELINE_MONTH_VIEW,
+} from 'ngx-calendar-kit';

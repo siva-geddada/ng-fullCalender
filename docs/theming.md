@@ -3,16 +3,16 @@
 Styles are written in SCSS and compiled into the component, so you don't need a global stylesheet. The tokens are CSS variables with zero specificity, so any rule of yours wins:
 
 ```scss
-sch-scheduler {
-  --sch-accent: #2563eb;
-  --sch-accent-text: #1d4ed8;
-  --sch-today: #eff6ff;
-  --sch-hour-height: 4rem;
+ngx-calendar {
+  --ngx-calendar-accent: #2563eb;
+  --ngx-calendar-accent-text: #1d4ed8;
+  --ngx-calendar-today: #eff6ff;
+  --ngx-calendar-hour-height: 4rem;
 }
 ```
 
 ```scss
-@use 'ng-fullcalender/styles' as sch;
+@use 'ngx-calendar-kit/styles' as sch;
 
 .my-calendar {
   @include sch.theme(('accent': #2563eb, 'weekend': #fafafa));

@@ -3,7 +3,7 @@
 The scheduler keeps a **working copy** of `events`. Drags, resizes and the `addEvent`/`updateEvent`/`removeEvent` methods change that copy, and the scheduler reports each change. Any new value you pass to `[events]` replaces the working copy.
 
 ```html
-<sch-scheduler
+<ngx-calendar
   #scheduler
   [events]="events()"
   [editable]="true"

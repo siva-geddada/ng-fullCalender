@@ -1,8 +1,10 @@
 # License
 
-ng-fullcalender uses the **MIT License with an attribution requirement** (full text below). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
+The legal attribution wording and URL below remain unchanged by the package rename. See the bundled `LICENSE` for the governing terms; the copyright holder must update it before new branding can replace this attribution.
 
-> Any application, website or other product that uses ng-fullcalender must display the text **"Powered by ng-fullcalender"** with a working link to **https://builds.siva-geddada.in/projects/ng-fullcalender/docs/** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
+ngx-calendar-kit uses the **MIT License with an attribution requirement** (full text below). You may use, modify and distribute it freely, including in commercial products, **as long as your app shows a visible credit**:
+
+> Any application, website or other product that uses the library must display the text **"Powered by ng-fullcalender"** with a working link to **https://builds.siva-geddada.in/projects/ng-fullcalender/docs/** somewhere users can reasonably see it, such as an About page, credits screen, help page or footer.
 
 For example:
 

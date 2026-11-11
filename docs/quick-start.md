@@ -3,7 +3,7 @@
 ```ts
 // app.config.ts
 import { ApplicationConfig } from '@angular/core';
-import { provideSchedulerViews } from 'ng-fullcalender/views/all';
+import { provideSchedulerViews } from 'ngx-calendar-kit/views/all';
 
 export const appConfig: ApplicationConfig = {
   providers: [provideSchedulerViews()], // month, week, day, year, agenda, timeline*
@@ -13,13 +13,13 @@ export const appConfig: ApplicationConfig = {
 ```ts
 // calendar.component.ts
 import { Component, signal } from '@angular/core';
-import { SCHEDULER_IMPORTS, SchedulerEvent } from 'ng-fullcalender';
+import { CALENDAR_IMPORTS, SchedulerEvent } from 'ngx-calendar-kit';
 
 @Component({
   selector: 'app-calendar',
-  imports: [SCHEDULER_IMPORTS],
+  imports: [CALENDAR_IMPORTS],
   template: `
-    <sch-scheduler
+    <ngx-calendar
       height="parent"
       [events]="events()"
       [(view)]="view"
@@ -41,4 +41,4 @@ export class CalendarComponent {
 }
 ```
 
-`SCHEDULER_IMPORTS` contains the root component, the toolbar, the body and the template directives. A `<sch-scheduler>` with no children renders the toolbar and body itself.
+`CALENDAR_IMPORTS` contains the root component, the toolbar, the body and the template directives. A `<ngx-calendar>` with no children renders the toolbar and body itself.

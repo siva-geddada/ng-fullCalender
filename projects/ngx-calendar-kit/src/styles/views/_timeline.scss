@@ -1,0 +1,217 @@
+// Timeline: fixed-width slots (--ngx-calendar-tl-slot) scroll horizontally; the resource column
+// (--ngx-calendar-tl-resource) and the header tiers stay sticky.
+.ngx-calendar-tl {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  border-top: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-tl__scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: auto;
+}
+
+.ngx-calendar-tl__inner {
+  min-width: 100%;
+}
+
+.ngx-calendar-tl__head,
+.ngx-calendar-tl__row {
+  display: flex;
+}
+
+.ngx-calendar-tl__head {
+  position: sticky;
+  top: 0;
+  z-index: 6;
+  background: var(--ngx-calendar-header-bg);
+  border-bottom: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-tl__corner,
+.ngx-calendar-tl__resource {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  flex: none;
+  width: var(--ngx-calendar-tl-resource);
+  border-right: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-tl__corner {
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0.75rem 0.5rem;
+  background: var(--ngx-calendar-header-bg);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--ngx-calendar-text-muted);
+}
+
+.ngx-calendar-tl--no-resources {
+  .ngx-calendar-tl__corner,
+  .ngx-calendar-tl__resource {
+    width: 0;
+    padding: 0;
+    border: 0;
+  }
+}
+
+.ngx-calendar-tl__tiers {
+  flex: none;
+}
+
+.ngx-calendar-tl__tier {
+  display: grid;
+
+  & + & {
+    border-top: 1px solid var(--ngx-calendar-border);
+  }
+}
+
+.ngx-calendar-tl__hcell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: 0.4375rem 0.5rem;
+  border-left: 1px solid var(--ngx-calendar-border);
+  overflow: hidden;
+  white-space: nowrap;
+
+  &:first-child {
+    border-left: 0;
+  }
+
+  &.ngx-calendar-is-today .ngx-calendar-tl__hlabel {
+    color: var(--ngx-calendar-accent-text);
+  }
+}
+
+.ngx-calendar-tl__tier:not(.ngx-calendar-tl__tier--leaf) .ngx-calendar-tl__hcell {
+  // Allow the sticky group label below to stay visible while scrolling.
+  overflow: visible;
+}
+
+.ngx-calendar-tl__tier:not(.ngx-calendar-tl__tier--leaf) .ngx-calendar-tl__hlabel {
+  // Keep group labels readable while scrolling horizontally.
+  position: sticky;
+  left: calc(var(--ngx-calendar-tl-resource) + 0.5rem);
+  align-self: flex-start;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--ngx-calendar-text-strong);
+}
+
+.ngx-calendar-tl__tier--leaf .ngx-calendar-tl__hlabel {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--ngx-calendar-text);
+  font-variant-numeric: tabular-nums;
+}
+
+.ngx-calendar-tl__hsub {
+  font-size: 0.6875rem;
+  color: var(--ngx-calendar-text-muted);
+}
+
+.ngx-calendar-tl__row {
+  border-bottom: 1px solid var(--ngx-calendar-border);
+}
+
+.ngx-calendar-tl__resource {
+  --_c: var(--ngx-calendar-event-color, var(--ngx-calendar-text-muted));
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 0.75rem;
+  background: var(--ngx-calendar-surface);
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.ngx-calendar-tl__rname {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ngx-calendar-tl__swatch {
+  flex: none;
+  width: 0.625rem;
+  height: 0.625rem;
+  border-radius: 3px;
+  background: var(--_c);
+}
+
+.ngx-calendar-tl__track {
+  position: relative;
+  flex: none;
+  background-image: linear-gradient(to right, var(--ngx-calendar-border) 1px, transparent 1px);
+  background-size: var(--ngx-calendar-tl-slot) 100%;
+  touch-action: none;
+}
+
+.ngx-calendar-tl__muted {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background: color-mix(in srgb, var(--ngx-calendar-text-muted) 7%, transparent);
+  pointer-events: none;
+}
+
+.ngx-calendar-event--tl {
+  position: absolute;
+  height: calc(34px - 6px);
+  align-items: center;
+  padding: 0 0.625rem 0 0.5rem;
+  border: 1px solid var(--ngx-calendar-event-border, color-mix(in srgb, var(--_c) var(--ngx-calendar-event-border-mix), transparent));
+  border-left: 3px solid var(--_c);
+
+  &.ngx-calendar-event--cont-before {
+    border-left-width: 1px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  &.ngx-calendar-event--cont-after {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .ngx-calendar-event-content {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.375rem;
+  }
+}
+
+.ngx-calendar-tl__selection {
+  position: absolute;
+  top: 2px;
+  bottom: 2px;
+  z-index: 1;
+  border-radius: var(--ngx-calendar-radius-sm);
+  background: var(--ngx-calendar-selection);
+  border: 1px solid var(--ngx-calendar-accent);
+  pointer-events: none;
+
+  &.ngx-calendar-is-invalid {
+    border-color: var(--ngx-calendar-now);
+    background: color-mix(in srgb, var(--ngx-calendar-now) 10%, transparent);
+  }
+}
+
+.ngx-calendar-tl__now {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 2px solid var(--ngx-calendar-now);
+  z-index: 4;
+  pointer-events: none;
+}

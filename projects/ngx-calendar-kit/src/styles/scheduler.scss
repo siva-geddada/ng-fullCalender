@@ -1,0 +1,28 @@
+// Compiled into <ngx-calendar> (ViewEncapsulation.None). Classes and tokens are calendar-prefixed.
+@use 'tokens';
+@use 'base';
+@use 'event';
+@use 'popover';
+@use 'views/time-grid';
+@use 'views/month';
+@use 'views/agenda';
+@use 'views/year';
+@use 'views/timeline';
+
+// Tokens use zero-specificity selectors so any consumer rule targeting the
+// element (`ngx-calendar { --ngx-calendar-accent: … }`, `.my-calendar { … }`) wins.
+// Dark rules come after light ones, so they win between themselves by source order.
+:where(.ngx-calendar) {
+  @include tokens.emit(tokens.$light);
+}
+
+:where(.ngx-calendar.ngx-calendar--dark) {
+  @include tokens.emit(tokens.$dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  :where(.ngx-calendar.ngx-calendar--auto) {
+    @include tokens.emit(tokens.$dark);
+    color-scheme: dark;
+  }
+}

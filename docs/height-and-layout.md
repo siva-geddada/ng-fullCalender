@@ -20,7 +20,7 @@ A full-page calendar:
   height: 100dvh;
 }
 
-.page sch-scheduler {
+.page ngx-calendar {
   flex: 1 1 auto;
   min-height: 0;
 }
@@ -29,6 +29,6 @@ A full-page calendar:
 ```html
 <div class="page">
   <app-header />
-  <sch-scheduler height="parent" [events]="events()" />
+  <ngx-calendar height="parent" [events]="events()" />
 </div>
 ```
