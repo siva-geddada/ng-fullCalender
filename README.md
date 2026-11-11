@@ -2,7 +2,10 @@
 
 An event scheduler (calendar) for **Angular 22+**, built with signals and styled with SCSS. It has month, week, day, year and agenda views, plus timelines at day, week, month and year scale. Every view shares the same event model, popovers, selection, and drag & resize behavior.
 
-📖 **Documentation:** https://builds.siva-geddada.in/projects/ng-fullcalender/docs/
+📖 <strong>Documentation:</strong>
+<a href="https://builds.siva-geddada.in/projects/ng-fullcalender/docs/" target="_blank" rel="noopener noreferrer">
+  Open Documentation
+</a>
 
 ![Month view](docs/images/month.png)
 
